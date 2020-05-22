@@ -3,8 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
   var elements = Array.prototype.slice.call(nodelist, 0);
 
   elements.forEach(function(element) {
-    element.addEventListener('click', function() {
-      element.parentNode.classList.add('is-active');
+    var button = element.querySelector('button');
+    var dropdown = element.parentNode;
+
+    button.addEventListener('click', function() {
+      dropdown.classList.add('is-active');
+    });
+
+    button.addEventListener('blur', function() {
+      dropdown.classList.remove('is-active');
     });
   });
 });
