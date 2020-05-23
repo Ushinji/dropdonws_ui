@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var dropdown = element.parentNode;
 
     button.addEventListener('click', function(event) {
-      event.stopPropagation();
       dropdown.classList.add('is-active');
     });
   });
@@ -19,6 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
       var button = element.querySelector('button');
       var dropdown = element.parentNode;
       var menu = document.querySelector('#' + button.getAttribute('aria-controls'));
+
+      // 自身のTriggerButtonクリック時はMenuを閉じない
+      if(event.target && element.contains(event.target)) {
+        return;
+      }
+
       if(event.target && !menu.contains(event.target)) {
         dropdown.classList.remove('is-active');
       }
